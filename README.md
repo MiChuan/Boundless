@@ -2,12 +2,13 @@
 
 > 余生也有涯，而知也无涯。
 
-一个持续整理的个人思想与方法论笔记集。这里记录的是关于**如何在有限的生命里，用有限的金钱、时间、精力和认知，获得尽可能多的快乐、自由与人生选择权**的思考。
+一个持续整理的个人思想与方法论笔记集，并提供配套的 **AI Skill**。这里记录的是关于**如何在有限的生命里，用有限的金钱、时间、精力和认知，获得尽可能多的快乐、自由与人生选择权**的思考。
 
-本仓库不提供代码，只有文字。它更像一份不断生长的个人知识库（Personal Knowledge Base），内容会随着阅读、经历和反思持续更新。
+它更像一份不断生长的个人知识库（Personal Knowledge Base），内容会随着阅读、经历和反思持续更新。配套 Skill 让 AI 助手能直接基于这些内容，为你提供结构化的**行动指南与生活决策建议**。
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Markdown](https://img.shields.io/badge/docs-Markdown-000000.svg)](https://commonmark.org/)
+[![Skill](https://img.shields.io/badge/skill-boundless--advisor-blue.svg)](#-ai-skillboundless-advisor)
 
 ---
 
@@ -18,6 +19,7 @@
 | [philosophy.md](philosophy.md) | 人生哲学 | 融合多种思想流派，构建一套完整的人生决策框架 |
 | [sunxue.md](sunxue.md) | 行动方法论 | 「孙学」：小镇青年的 12 条落地执行清单 |
 | [partner.md](partner.md) | 关系与择偶 | 关于吸引力、约会与择偶标准的排序笔记 |
+| [boundless-advisor/](boundless-advisor/) | AI Skill | 可安装到 AI 编辑器的决策顾问 Skill |
 
 ---
 
@@ -54,11 +56,19 @@
 
 ```text
 Boundless/
-├── README.md            # 本文件
-├── philosophy.md        # 融合多思想的完整人生哲学
-├── sunxue.md            # 孙学：小镇青年落地执行版
-├── partner.md           # 恋爱与择偶笔记
-├── LICENSE              # MIT License
+├── README.md                    # 本文件
+├── philosophy.md                # 融合多思想的完整人生哲学
+├── sunxue.md                    # 孙学：小镇青年落地执行版
+├── partner.md                   # 恋爱与择偶笔记
+├── boundless-advisor/           # 配套 AI Skill
+│   ├── SKILL.md                 #   技能主入口（决策流程与触发规则）
+│   ├── references/              #   知识快照（离线可用）
+│   │   ├── philosophy.md
+│   │   ├── sunxue.md
+│   │   └── partner.md
+│   └── scripts/
+│       └── sync-knowledge.sh    #   从本仓库同步最新知识
+├── LICENSE                      # MIT License
 └── .gitignore
 ```
 
@@ -78,6 +88,65 @@ cd Boundless
 
 ---
 
+## 🧭 AI Skill：boundless-advisor
+
+把本仓库的思想体系打包成了一个可安装的 Skill。安装后，你可以直接用自然语言询问人生规划与生活决策问题，AI 会按结构化的六步流程给出建议。
+
+### 它能做什么
+
+| 场景 | 示例提问 |
+| --- | --- |
+| 职业与行动 | 「我该不该辞职创业？」「怎么规划未来五年？」 |
+| 金钱与消费 | 「钱不够花，该怎么分配？」「这笔钱该不该花？」 |
+| 处世与心态 | 「我总在意别人怎么看」「学不完，很焦虑」 |
+| 生命观 | 「赚钱到底为了什么？」「工作太累，没时间生活」 |
+| 关系 | 「择偶应该看重什么？」 |
+
+### 工作方式
+
+Skill 内置一条 **六步决策流程**：定位问题类型 → 追问关键信息 → 用四资源模型（时间/精力/金钱/认知）拆解 → 用八模块框架定位 → 给出可执行建议 → 收束成一句判断。
+
+知识来源为 `references/` 下的三份文档快照，**离线可用**；也可运行脚本同步仓库最新内容：
+
+```bash
+bash boundless-advisor/scripts/sync-knowledge.sh
+```
+
+### 安装
+
+**方式一：使用 WorkBuddy**
+
+在 WorkBuddy 中导入 `boundless-advisor` 目录（或 `.skill` 包）即可，Skill 会自动被识别。
+
+**方式二：Cursor**
+
+将 `boundless-advisor` 目录放入项目的 skills 目录：
+
+```bash
+# 项目级（推荐，随项目共享）
+mkdir -p .cursor/skills
+cp -r boundless-advisor .cursor/skills/
+
+# 或全局安装
+mkdir -p ~/.cursor/skills
+cp -r boundless-advisor ~/.cursor/skills/
+```
+
+**方式三：Codex / 其他支持 Skill 的工具**
+
+这些工具遵循通用的 Skill 规范（`SKILL.md` + 资源目录）。将 `boundless-advisor` 整个目录复制到对应工具的 skills 目录即可：
+
+```bash
+# 通用做法：克隆仓库后复制 skill 目录
+git clone https://github.com/MiChuan/Boundless.git
+cp -r Boundless/boundless-advisor <你的工具的 skills 目录>/
+```
+
+> Skill 本质是一个纯文本目录，不依赖任何编译产物。若你的工具只支持上传压缩包，可自行打包：
+> `cd boundless-advisor && zip -r ../boundless-advisor.zip .`
+
+---
+
 ## 📝 写作约定
 
 为保证良好的阅读与渲染体验，仓库内所有文档遵循以下规范：
@@ -88,6 +157,7 @@ cd Boundless
 - 对比性内容优先使用表格，并列内容优先使用列表
 - 文件末尾保留一个换行符
 - 所有文档通过 Markdown 语法校验，无告警
+- `boundless-advisor/SKILL.md` 的 frontmatter 仅使用标准字段（`name`、`description`、`license`、`metadata`），以保证跨平台兼容
 
 ---
 
