@@ -81,7 +81,7 @@ fi
 SRC_DIR="${TMP_DIR}/repo"
 UPDATED=0
 
-for f in philosophy.md sunxue.md tongxue.md partner.md; do
+for f in philosophy.md sunxue.md tongxue.md partner.md sure.md; do
   if [ -f "${SRC_DIR}/${f}" ]; then
     cp "${SRC_DIR}/${f}" "${REF_DIR}/${f}"
     echo "    [更新] ${f}"
@@ -96,7 +96,7 @@ for f in "${SRC_DIR}"/*.md; do
   [ -e "${f}" ] || continue
   base="$(basename "${f}")"
   case "${base}" in
-    philosophy.md|sunxue.md|tongxue.md|partner.md|README.md|LICENSE) continue ;;
+    philosophy.md|sunxue.md|tongxue.md|partner.md|sure.md|README.md|LICENSE) continue ;;
   esac
   if [ ! -f "${REF_DIR}/${base}" ]; then
     cp "${f}" "${REF_DIR}/${base}"
